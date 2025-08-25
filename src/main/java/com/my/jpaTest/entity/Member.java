@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-//@Data
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,4 +16,6 @@ public class Member {
     @Id
     private String memberId;
     private String name;
+
+
 }
