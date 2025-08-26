@@ -1,7 +1,6 @@
 package com.my.jpaTest.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,5 +16,8 @@ public class Member {
     private String memberId;
     private String name;
 
-
+    // 팀 정보를 갖는 연관관계를 구성
+    @ManyToOne
+    @JoinColumn(name = "teamId")
+    private Team team;
 }
