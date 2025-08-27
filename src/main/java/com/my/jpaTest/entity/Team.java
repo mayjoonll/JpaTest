@@ -14,8 +14,8 @@ import java.util.List;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class Team {
     @Id
@@ -23,7 +23,9 @@ public class Team {
     private String teamName;
     // 팀에 소속된 멤버의 리스트를 저장
     // 연관관계 설정 : Member 클래스의 Team 정보를 가리킴
-    @OneToMany(mappedBy = "team",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "team",
+            fetch = FetchType.EAGER)
+    @Builder.Default
     private List<Member>
             memberList = new ArrayList<>();
 }
