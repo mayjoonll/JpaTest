@@ -1,6 +1,9 @@
 package com.my.jpaTest.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,15 +11,14 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class IdolMember {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String m_id;
-    private String m_name;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "g_id")
+    private String id;
+    private String name;
+    @ManyToOne
+    @JoinColumn(name = "groupId")
     private GirlGroup girlGroup;
 }

@@ -9,27 +9,22 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
 @Entity
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class GirlGroup {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String g_id;
-    private String g_name;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "e_id")
-    private Entertainment entertainment;
+    private String groupId;
+    private String groupName;
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "enterId")
+    Entertainment entertainment;
 
+    @Builder.Default
     @OneToMany(mappedBy = "girlGroup",
             fetch = FetchType.EAGER,
-            cascade = { CascadeType.REMOVE, CascadeType.PERSIST})
-    private List<IdolMember> idolMembers = new ArrayList<>();
-
-    public void addMember(IdolMember member) {
-        idolMembers.add(member);
-        member.setGirlGroup(this);
-    }
+            cascade = CascadeType.PERSIST)
+    List<IdolMember> members = new ArrayList<>();
 }
